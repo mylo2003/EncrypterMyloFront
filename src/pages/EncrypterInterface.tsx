@@ -109,371 +109,21 @@ export default function EncrypterInterface() {
     setMetadata(null);
   };
 
-
-  // return (
-  //   <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-  //     <div className="max-w-4xl mx-auto">
-  //       <div className="text-center mb-8">
-  //         <h1 className="text-4xl font-bold text-gray-900 mb-2">Sistema de Encriptación de Archivos</h1>
-  //         <p className="text-lg text-gray-600">
-  //           Encripta y desencripta archivos de forma segura con múltiples algoritmos
-  //         </p>
-  //       </div>
-
-  //       <Card className="shadow-xl">
-  //         <CardHeader>
-  //           <Tabs
-  //             value={activeTab}
-  //             onValueChange={(value) => {
-  //               setActiveTab(value)
-  //               resetForm()
-  //             }}
-  //           >
-  //             <TabsList className="grid w-full grid-cols-2">
-  //               <TabsTrigger value="encrypt" className="flex items-center gap-2">
-  //                 <Shield className="h-4 w-4" />
-  //                 Encriptar
-  //               </TabsTrigger>
-  //               <TabsTrigger value="decrypt" className="flex items-center gap-2">
-  //                 <Unlock className="h-4 w-4" />
-  //                 Desencriptar
-  //               </TabsTrigger>
-  //             </TabsList>
-
-  //             <TabsContent value="encrypt" className="mt-6">
-  //               <CardTitle className="flex items-center gap-2 mb-2">
-  //                 <Shield className="h-5 w-5 text-green-600" />
-  //                 Encriptar Archivo
-  //               </CardTitle>
-  //               <CardDescription>Selecciona un archivo y configura los parámetros de encriptación</CardDescription>
-  //             </TabsContent>
-
-  //             <TabsContent value="decrypt" className="mt-6">
-  //               <CardTitle className="flex items-center gap-2 mb-2">
-  //                 <Unlock className="h-5 w-5 text-blue-600" />
-  //                 Desencriptar Archivo
-  //               </CardTitle>
-  //               <CardDescription>Sube los archivos necesarios para desencriptar tu contenido</CardDescription>
-  //             </TabsContent>
-  //           </Tabs>
-  //         </CardHeader>
-
-  //         <CardContent>
-  //           <Tabs value={activeTab}>
-  //             <TabsContent value="encrypt" className="space-y-6">
-  //               <div className="space-y-4">
-  //                 <div>
-  //                   <Label htmlFor="encrypt-file" className="text-sm font-medium">
-  //                     Archivo a encriptar
-  //                   </Label>
-  //                   <Input
-  //                     id="encrypt-file"
-  //                     type="file"
-  //                     onChange={(e) => setFileToEncrypt(e.target.files?.[0] || null)}
-  //                     className="mt-1"
-  //                   />
-  //                   {encryptFile && (
-  //                     <div className="mt-2 p-2 bg-gray-50 rounded-md">
-  //                       <p className="text-sm text-gray-600">
-  //                         <strong>Archivo seleccionado:</strong> {encryptFile.name}
-  //                       </p>
-  //                     </div>
-  //                   )}
-  //                 </div>
-
-  //                 <div>
-  //                   <Label htmlFor="algorithm" className="text-sm font-medium">
-  //                     Algoritmo de encriptación
-  //                   </Label>
-  //                   <Select value={algorithm} onValueChange={(value: EncryptionAlgorithm) => setAlgorithm(value)}>
-  //                     <SelectTrigger className="mt-1">
-  //                       <SelectValue />
-  //                     </SelectTrigger>
-  //                     <SelectContent>
-  //                       {algorithmOptions.map((alg) => (
-  //                         <SelectItem key={alg.value} value={alg.value}>
-  //                           <div>
-  //                             <div className="font-medium">{alg.label}</div>
-  //                             <div className="text-sm text-gray-500">{alg.description}</div>
-  //                           </div>
-  //                         </SelectItem>
-  //                       ))}
-  //                     </SelectContent>
-  //                   </Select>
-  //                 </div>
-
-  //                 <div className="flex items-center space-x-2">
-  //                   <Switch id="compress" checked={compress} onCheckedChange={setCompress} />
-  //                   <Label htmlFor="compress" className="text-sm font-medium">
-  //                     Comprimir archivo antes de encriptar
-  //                   </Label>
-  //                 </div>
-  //                 {compress && (
-  //                   <p className="text-sm text-gray-500 ml-6">
-  //                     La compresión puede reducir el tamaño del archivo pero aumentará el tiempo de procesamiento
-  //                   </p>
-  //                 )}
-  //               </div>
-
-  //               <Button
-  //                 onClick={handleEncrypt}
-  //                 disabled={!encryptFile || status === "processing"}
-  //                 className="w-full"
-  //                 size="lg"
-  //               >
-  //                 {status === "processing" ? (
-  //                   <>
-  //                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-  //                     Encriptando...
-  //                   </>
-  //                 ) : (
-  //                   <>
-  //                     <Shield className="mr-2 h-4 w-4" />
-  //                     Encriptar Archivo
-  //                   </>
-  //                 )}
-  //               </Button>
-  //             </TabsContent>
-
-  //             <TabsContent value="decrypt" className="space-y-6">
-  //               <div className="space-y-4">
-  //                 <div>
-  //                   <Label className="text-sm font-medium">Método de desencriptación</Label>
-  //                   <Tabs
-  //                     value={decryptMode}
-  //                     onValueChange={(value: "individual" | "archive") => setDecryptMode(value)}
-  //                   >
-  //                     <TabsList className="grid w-full grid-cols-2 mt-2">
-  //                       <TabsTrigger value="archive" className="flex items-center gap-2">
-  //                         <FileArchive className="h-4 w-4" />
-  //                         Archivo comprimido
-  //                       </TabsTrigger>
-  //                       <TabsTrigger value="individual" className="flex items-center gap-2">
-  //                         <Files className="h-4 w-4" />
-  //                         Archivos individuales
-  //                       </TabsTrigger>
-  //                     </TabsList>
-
-  //                     <TabsContent value="archive" className="mt-4">
-  //                       <div>
-  //                         <Label htmlFor="archive-file" className="text-sm font-medium">
-  //                           Archivo ZIP o RAR con componentes de encriptación
-  //                         </Label>
-  //                         <Input
-  //                           id="archive-file"
-  //                           type="file"
-  //                           accept=".zip,.rar"
-  //                           onChange={(e) => setArchiveFile(e.target.files?.[0] || null)}
-  //                           className="mt-1"
-  //                         />
-  //                         {archiveFile && (
-  //                           <div className="mt-2 p-2 bg-gray-50 rounded-md">
-  //                             <p className="text-sm text-gray-600">
-  //                               <strong>Archivo seleccionado:</strong> {archiveFile.name}
-  //                             </p>
-  //                           </div>
-  //                         )}
-  //                       </div>
-
-  //                       <Button
-  //                         onClick={handleDecryptFromArchive}
-  //                         disabled={!archiveFile || status === "processing"}
-  //                         className="w-full mt-4"
-  //                         size="lg"
-  //                       >
-  //                         {status === "processing" ? (
-  //                           <>
-  //                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-  //                             Desencriptando...
-  //                           </>
-  //                         ) : (
-  //                           <>
-  //                             <Unlock className="mr-2 h-4 w-4" />
-  //                             Desencriptar desde archivo
-  //                           </>
-  //                         )}
-  //                       </Button>
-  //                     </TabsContent>
-
-  //                     <TabsContent value="individual" className="mt-4 space-y-4">
-  //                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-  //                         <div>
-  //                           <Label htmlFor="encrypted-file" className="text-sm font-medium">
-  //                             Archivo encriptado
-  //                           </Label>
-  //                           <Input
-  //                             id="encrypted-file"
-  //                             type="file"
-  //                             onChange={(e) => setEncryptedFile(e.target.files?.[0] || null)}
-  //                             className="mt-1"
-  //                           />
-  //                           {encryptedFile && (
-  //                             <Badge variant="secondary" className="mt-1">
-  //                               ✓ Cargado
-  //                             </Badge>
-  //                           )}
-  //                         </div>
-
-  //                         <div>
-  //                           <Label htmlFor="encrypted-key" className="text-sm font-medium">
-  //                             Clave encriptada (.key)
-  //                           </Label>
-  //                           <Input
-  //                             id="encrypted-key"
-  //                             type="file"
-  //                             accept=".key"
-  //                             onChange={(e) => setEncryptedKey(e.target.files?.[0] || null)}
-  //                             className="mt-1"
-  //                           />
-  //                           {encryptedKey && (
-  //                             <Badge variant="secondary" className="mt-1">
-  //                               ✓ Cargado
-  //                             </Badge>
-  //                           )}
-  //                         </div>
-
-  //                         <div>
-  //                           <Label htmlFor="private-key" className="text-sm font-medium">
-  //                             Clave privada (.key)
-  //                           </Label>
-  //                           <Input
-  //                             id="private-key"
-  //                             type="file"
-  //                             accept=".key"
-  //                             onChange={(e) => setPrivateKey(e.target.files?.[0] || null)}
-  //                             className="mt-1"
-  //                           />
-  //                           {privateKey && (
-  //                             <Badge variant="secondary" className="mt-1">
-  //                               ✓ Cargado
-  //                             </Badge>
-  //                           )}
-  //                         </div>
-
-  //                         <div>
-  //                           <Label htmlFor="signature" className="text-sm font-medium">
-  //                             Firma digital (.sig)
-  //                           </Label>
-  //                           <Input
-  //                             id="signature"
-  //                             type="file"
-  //                             accept=".sig"
-  //                             onChange={(e) => setSignature(e.target.files?.[0] || null)}
-  //                             className="mt-1"
-  //                           />
-  //                           {signature && (
-  //                             <Badge variant="secondary" className="mt-1">
-  //                               ✓ Cargado
-  //                             </Badge>
-  //                           )}
-  //                         </div>
-
-  //                         <div className="md:col-span-2">
-  //                           <Label htmlFor="metadata" className="text-sm font-medium">
-  //                             Metadatos (.json)
-  //                           </Label>
-  //                           <Input
-  //                             id="metadata"
-  //                             type="file"
-  //                             accept=".json"
-  //                             onChange={(e) => setMetadata(e.target.files?.[0] || null)}
-  //                             className="mt-1"
-  //                           />
-  //                           {metadata && (
-  //                             <Badge variant="secondary" className="mt-1">
-  //                               ✓ Cargado
-  //                             </Badge>
-  //                           )}
-  //                         </div>
-  //                       </div>
-
-  //                       <Button
-  //                         onClick={handleDecryptIndividual}
-  //                         disabled={
-  //                           !encryptedFile ||
-  //                           !encryptedKey ||
-  //                           !privateKey ||
-  //                           !signature ||
-  //                           !metadata ||
-  //                           status === "processing"
-  //                         }
-  //                         className="w-full"
-  //                         size="lg"
-  //                       >
-  //                         {status === "processing" ? (
-  //                           <>
-  //                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-  //                             Desencriptando...
-  //                           </>
-  //                         ) : (
-  //                           <>
-  //                             <Unlock className="mr-2 h-4 w-4" />
-  //                             Desencriptar archivos
-  //                           </>
-  //                         )}
-  //                       </Button>
-  //                     </TabsContent>
-  //                   </Tabs>
-  //                 </div>
-  //               </div>
-  //             </TabsContent>
-  //           </Tabs>
-
-  //           {status === "processing" && (
-  //             <div className="mt-6">
-  //               <div className="flex items-center justify-between mb-2">
-  //                 <span className="text-sm font-medium">Progreso</span>
-  //                 <span className="text-sm text-gray-500">{progress}%</span>
-  //               </div>
-  //               <Progress value={progress} className="w-full" />
-  //             </div>
-  //           )}
-
-  //           {message && (
-  //             <Alert
-  //               className={`mt-6 ${status === "success" ? "border-green-200 bg-green-50" : status === "error" ? "border-red-200 bg-red-50" : ""}`}
-  //             >
-  //               {status === "success" ? (
-  //                 <CheckCircle className="h-4 w-4 text-green-600" />
-  //               ) : status === "error" ? (
-  //                 <AlertCircle className="h-4 w-4 text-red-600" />
-  //               ) : (
-  //                 <Loader2 className="h-4 w-4 animate-spin" />
-  //               )}
-  //               <AlertDescription
-  //                 className={status === "success" ? "text-green-800" : status === "error" ? "text-red-800" : ""}
-  //               >
-  //                 {message}
-  //               </AlertDescription>
-  //             </Alert>
-  //           )}
-  //         </CardContent>
-  //       </Card>
-
-  //       <div className="mt-8 text-center">
-  //         <p className="text-sm text-gray-500">
-  //           Sistema de encriptación híbrida con firma digital para máxima seguridad
-  //         </p>
-  //       </div>
-  //     </div>
-  //   </div>
-  // )
-
-   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 flex items-center justify-center">
+  return (
+    <div className="h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 flex items-center justify-center">
       <div className="w-full max-w-6xl">
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-white mb-2 flex items-center justify-center gap-2">
             <Shield className="h-8 w-8 text-green-400" />
-            Sistema de Encriptación de Archivos
+            Encrypter Mylo
           </h1>
           <p className="text-gray-300">
             Encripta y desencripta archivos de forma segura con múltiples algoritmos
           </p>
         </div>
 
-        <Card className="bg-gray-800 border-gray-700 shadow-2xl">
-          <CardHeader className="pb-4">
+        <Card className="h-[525px] w-[900px] flex mx-auto bg-gray-800 border-gray-700 shadow-2xl">
+          <CardHeader className="">
             <Tabs
               value={activeTab}
               onValueChange={(value) => {
@@ -482,25 +132,25 @@ export default function EncrypterInterface() {
               }}
             >
               <TabsList className="grid w-full grid-cols-2 bg-gray-700 border-gray-600">
-                <TabsTrigger 
-                  value="encrypt" 
-                  className="flex items-center gap-2 data-[state=active]:bg-green-600 data-[state=active]:text-white text-gray-300"
+                <TabsTrigger
+                  value="encrypt"
+                  className="flex items-center gap-2 transition-all data-[state=active]:bg-emerald-500 data-[state=active]:hover:bg-emerald-600 data-[state=active]:text-white text-gray-300 cursor-pointer hover:bg-gray-800"
                 >
                   <Shield className="h-4 w-4" />
                   Encriptar
                 </TabsTrigger>
-                <TabsTrigger 
-                  value="decrypt" 
-                  className="flex items-center gap-2 data-[state=active]:bg-green-600 data-[state=active]:text-white text-gray-300"
+                <TabsTrigger
+                  value="decrypt"
+                  className="flex items-center gap-2 transition-all data-[state=active]:bg-green-700 data-[state=active]:hover:bg-green-600 data-[state=active]:text-white text-gray-300 cursor-pointer hover:bg-gray-800"
                 >
                   <Unlock className="h-4 w-4" />
                   Desencriptar
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="encrypt" className="mt-4">
-                <CardTitle className="flex items-center gap-2 mb-2 text-white">
-                  <Shield className="h-5 w-5 text-green-400" />
+              <TabsContent value="encrypt" className="mt-4 text-center">
+                <CardTitle className="flex justify-center items-center gap-2 mb-2 text-white ">
+                  <Shield className="h-5 w-5 text-emerald-500" />
                   Encriptar Archivo
                 </CardTitle>
                 <CardDescription className="text-gray-400">
@@ -508,13 +158,13 @@ export default function EncrypterInterface() {
                 </CardDescription>
               </TabsContent>
 
-              <TabsContent value="decrypt" className="mt-4">
-                <CardTitle className="flex items-center gap-2 mb-2 text-white">
-                  <Unlock className="h-5 w-5 text-green-400" />
+              <TabsContent value="decrypt" className="mt-4 text-center">
+                <CardTitle className="flex justify-center items-center gap-2 mb-2 text-white">
+                  <Unlock className="h-5 w-5 text-green-700" />
                   Desencriptar Archivo
                 </CardTitle>
                 <CardDescription className="text-gray-400">
-                  Sube los archivos necesarios para desencriptar tu contenido
+                  Sube los archivos necesarios para desencriptar tu contenido, no es necesario seleccionar el tipo de algoritmo
                 </CardDescription>
               </TabsContent>
             </Tabs>
@@ -523,8 +173,8 @@ export default function EncrypterInterface() {
           <CardContent>
             <Tabs value={activeTab}>
               <TabsContent value="encrypt" className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="w-full">
                     <Label htmlFor="encrypt-file" className="text-sm font-medium text-gray-300">
                       Archivo a encriptar
                     </Label>
@@ -532,29 +182,28 @@ export default function EncrypterInterface() {
                       id="encrypt-file"
                       type="file"
                       onChange={(e) => setFileToEncrypt(e.target.files?.[0] || null)}
-                      className="mt-1 bg-gray-700 border-gray-600 text-white file:bg-green-600 file:text-white file:border-0"
+                      className="mt-1 bg-gray-700 border-gray-600 text-white file:text-white file:border-0 cursor-pointer w-full"
                     />
-                    {encryptFile && (
+                    {fileToEncrypt && (
                       <Badge variant="secondary" className="mt-2 bg-green-900 text-green-200">
-                        ✓ {encryptFile.name}
+                        ✓ {fileToEncrypt.name}
                       </Badge>
                     )}
                   </div>
 
-                  <div>
+                  <div className="w-full">
                     <Label htmlFor="algorithm" className="text-sm font-medium text-gray-300">
                       Algoritmo de encriptación
                     </Label>
                     <Select value={algorithm} onValueChange={(value: EncryptionAlgorithm) => setAlgorithm(value)}>
-                      <SelectTrigger className="mt-1 bg-gray-700 border-gray-600 text-white">
+                      <SelectTrigger className="mt-1 bg-gray-700 border-gray-600 text-white w-full cursor-pointer">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-gray-700 border-gray-600">
+                      <SelectContent className="bg-gray-700 border-gray-600 ">
                         {algorithmOptions.map((alg) => (
-                          <SelectItem key={alg.value} value={alg.value} className="text-white focus:bg-gray-600">
+                          <SelectItem key={alg.value} value={alg.value} className="text-white focus:bg-gray-600 cursor-pointer">
                             <div>
-                              <div className="font-medium">{alg.label}</div>
-                              <div className="text-sm text-gray-400">{alg.description}</div>
+                              <div className="font-medium">{alg.label} <span className="text-sm text-gray-400">{alg.description}</span></div>
                             </div>
                           </SelectItem>
                         ))}
@@ -563,12 +212,13 @@ export default function EncrypterInterface() {
                   </div>
                 </div>
 
+
                 <div className="flex items-center space-x-3 p-3 bg-gray-700 rounded-lg">
-                  <Switch 
-                    id="compress" 
-                    checked={compress} 
+                  <Switch
+                    id="compress"
+                    checked={compress}
                     onCheckedChange={setCompress}
-                    className="data-[state=checked]:bg-green-600"
+                    className="data-[state=checked]:bg-emerald-500 cursor-pointer"
                   />
                   <div>
                     <Label htmlFor="compress" className="text-sm font-medium text-gray-300">
@@ -583,7 +233,7 @@ export default function EncrypterInterface() {
                 <Button
                   onClick={handleEncrypt}
                   disabled={!encryptFile || status === "processing"}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white"
+                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer"
                   size="lg"
                 >
                   {status === "processing" ? (
@@ -606,23 +256,23 @@ export default function EncrypterInterface() {
                   onValueChange={(value: "individual" | "archive") => setDecryptMode(value)}
                 >
                   <TabsList className="grid w-full grid-cols-2 bg-gray-700">
-                    <TabsTrigger 
-                      value="archive" 
-                      className="flex items-center gap-2 data-[state=active]:bg-green-600 text-gray-300"
+                    <TabsTrigger
+                      value="archive"
+                      className="flex transition-all items-center gap-2 data-[state=active]:bg-green-700 text-gray-300 cursor-pointer hover:bg-gray-800"
                     >
                       <FileArchive className="h-4 w-4" />
                       Archivo comprimido
                     </TabsTrigger>
-                    <TabsTrigger 
-                      value="individual" 
-                      className="flex items-center gap-2 data-[state=active]:bg-green-600 text-gray-300"
+                    <TabsTrigger
+                      value="individual"
+                      className="flex items-center gap-2 data-[state=active]:bg-green-700 text-gray-300 cursor-pointer hover:bg-gray-800"
                     >
                       <Files className="h-4 w-4" />
                       Archivos individuales
                     </TabsTrigger>
                   </TabsList>
 
-                  <TabsContent value="archive" className="mt-4">
+                  <TabsContent value="archive" className="mt-2">
                     <div className="space-y-4">
                       <div>
                         <Label htmlFor="archive-file" className="text-sm font-medium text-gray-300">
@@ -633,7 +283,7 @@ export default function EncrypterInterface() {
                           type="file"
                           accept=".zip,.rar"
                           onChange={(e) => setArchiveFile(e.target.files?.[0] || null)}
-                          className="mt-1 bg-gray-700 border-gray-600 text-white file:bg-green-600 file:text-white"
+                          className="mt-1 bg-gray-700 border-gray-600 text-white file:text-white cursor-pointer"
                         />
                         {archiveFile && (
                           <Badge variant="secondary" className="mt-2 bg-green-900 text-green-200">
@@ -663,17 +313,17 @@ export default function EncrypterInterface() {
                     </div>
                   </TabsContent>
 
-                  <TabsContent value="individual" className="mt-4">
+                  <TabsContent value="individual" className="mt-2">
                     <div className="space-y-4">
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                         {[
                           { id: "encrypted-file", label: "Archivo encriptado", file: encryptedFile, setter: setEncryptedFile, accept: "" },
-                          { id: "encrypted-key", label: "Clave encriptada", file: encryptedKey, setter: setEncryptedKey, accept: ".key" },
-                          { id: "private-key", label: "Clave privada", file: privateKey, setter: setPrivateKey, accept: ".key" },
-                          { id: "signature", label: "Firma digital", file: signature, setter: setSignature, accept: ".sig" },
-                          { id: "metadata", label: "Metadatos", file: metadata, setter: setMetadata, accept: ".json" }
+                          { id: "encrypted-key", label: "Clave encriptada .key", file: encryptedKey, setter: setEncryptedKey, accept: ".key" },
+                          { id: "private-key", label: "Clave privada .key", file: privateKey, setter: setPrivateKey, accept: ".key" },
+                          { id: "signature", label: "Firma digital .sig", file: signature, setter: setSignature, accept: ".sig" },
+                          { id: "metadata", label: "Metadatos .json", file: metadata, setter: setMetadata, accept: ".json" }
                         ].map((item, index) => (
-                          <div key={item.id} className={index === 4 ? "md:col-span-3" : ""}>
+                          <div key={item.id} className={index === 5 ? "md:col-span-3" : ""}>
                             <Label htmlFor={item.id} className="text-xs font-medium text-gray-300">
                               {item.label}
                             </Label>
@@ -682,7 +332,7 @@ export default function EncrypterInterface() {
                               type="file"
                               accept={item.accept}
                               onChange={(e) => item.setter(e.target.files?.[0] || null)}
-                              className="mt-1 bg-gray-700 border-gray-600 text-white file:bg-green-600 file:text-white text-xs"
+                              className="mt-1 bg-gray-700 border-gray-600 text-white  file:text-white text-xs cursor-pointer"
                             />
                             {item.file && (
                               <Badge variant="secondary" className="mt-1 bg-green-900 text-green-200 text-xs">
@@ -736,13 +386,12 @@ export default function EncrypterInterface() {
 
             {message && (
               <Alert
-                className={`mt-4 border ${
-                  status === "success" 
-                    ? "border-green-600 bg-green-900/20" 
-                    : status === "error" 
-                    ? "border-red-600 bg-red-900/20" 
+                className={`mt-4 border ${status === "success"
+                  ? "border-green-600 bg-green-900/20"
+                  : status === "error"
+                    ? "border-red-600 bg-red-900/20"
                     : "border-gray-600 bg-gray-700"
-                }`}
+                  }`}
               >
                 {status === "success" ? (
                   <CheckCircle className="h-4 w-4 text-green-400" />
@@ -753,11 +402,11 @@ export default function EncrypterInterface() {
                 )}
                 <AlertDescription
                   className={
-                    status === "success" 
-                      ? "text-green-300" 
-                      : status === "error" 
-                      ? "text-red-300" 
-                      : "text-gray-300"
+                    status === "success"
+                      ? "text-green-300"
+                      : status === "error"
+                        ? "text-red-300"
+                        : "text-gray-300"
                   }
                 >
                   {message}
@@ -769,7 +418,7 @@ export default function EncrypterInterface() {
 
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-400">
-            Sistema de encriptación híbrida con firma digital para máxima seguridad
+            Realizado por Camilo Mora como proyecto final para Seguridad Informática.
           </p>
         </div>
       </div>

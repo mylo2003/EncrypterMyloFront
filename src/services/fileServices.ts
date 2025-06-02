@@ -14,7 +14,7 @@ export const encryptFile = async (
   setMessage: (message: string) => void
 ): Promise<Blob | null> => {
   if (!file) {
-    setMessage("Por favor selecciona un archivo para encriptar");
+    setMessage("Por favor, selecciona un archivo para encriptar");
     setStatus("error");
     return null;
   }
@@ -48,7 +48,7 @@ export const decryptFromArchive = async (
   setMessage: (message: string) => void
 ): Promise<Blob | null> => {
   if (!archiveFile) {
-    setMessage("Por favor selecciona un archivo ZIP o RAR");
+    setMessage("Por favor, selecciona un archivo ZIP o RAR");
     setStatus("error");
     return null;
   }
@@ -86,7 +86,7 @@ export const decryptIndividual = async (
   setMessage: (message: string) => void
 ): Promise<Blob | null> => {
   if (!encryptedFile || !encryptedKey || !privateKey || !signature || !metadata) {
-    setMessage("Por favor selecciona todos los archivos requeridos");
+    setMessage("Por favor, selecciona todos los archivos requeridos");
     setStatus("error");
     return null;
   }
