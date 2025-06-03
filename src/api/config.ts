@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:8090/encrypter/api",
+  baseURL: "https://encryptermylo.onrender.com/encrypter/api",
   headers: {
     "Content-Type": "application/json",
   },
