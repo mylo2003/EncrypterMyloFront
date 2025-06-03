@@ -47,6 +47,7 @@ export default function EncrypterInterface() {
 
   const handleEncrypt = async () => {
     if (!encryptFile) return;
+    if (!fileToEncrypt) return;
 
     const result = await encryptFile(
       fileToEncrypt,
@@ -127,7 +128,9 @@ export default function EncrypterInterface() {
             <Tabs
               value={activeTab}
               onValueChange={(value) => {
-                setActiveTab(value);
+                if (value === 'encrypt' || value === 'decrypt') {
+                  setActiveTab(value);
+                };
                 resetForm();
               }}
             >
@@ -253,7 +256,11 @@ export default function EncrypterInterface() {
               <TabsContent value="decrypt" className="space-y-4">
                 <Tabs
                   value={decryptMode}
-                  onValueChange={(value: "individual" | "archive") => setDecryptMode(value)}
+                  onValueChange={(value) => {
+                    if (value === "individual" || value === "archive") {
+                      setDecryptMode(value);
+                    }
+                  }}
                 >
                   <TabsList className="grid w-full grid-cols-2 bg-gray-700">
                     <TabsTrigger

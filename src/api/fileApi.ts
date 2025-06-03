@@ -1,3 +1,4 @@
+import type { AxiosProgressEvent } from "axios";
 import apiClient from "./config";
 import type { EncryptionAlgorithm } from "@/types";
 
@@ -5,7 +6,7 @@ export const encryptFile = (
   file: File,
   algorithm: EncryptionAlgorithm,
   compress: boolean,
-  onUploadProgress?: (progressEvent: ProgressEvent) => void
+  onUploadProgress?: (progressEvent: AxiosProgressEvent) => void
 ) => {
   const formData = new FormData();
   formData.append("file", file);
@@ -21,7 +22,7 @@ export const encryptFile = (
 
 export const decryptFromArchive = (
   archiveFile: File,
-  onUploadProgress?: (progressEvent: ProgressEvent) => void
+  onUploadProgress?: (progressEvent: AxiosProgressEvent) => void
 ) => {
   const formData = new FormData();
   formData.append("archive", archiveFile);
@@ -39,7 +40,7 @@ export const decryptIndividual = (
   privateKey: File,
   signature: File,
   metadata: File,
-  onUploadProgress?: (progressEvent: ProgressEvent) => void
+  onUploadProgress?: (progressEvent: AxiosProgressEvent) => void
 ) => {
   const formData = new FormData();
   formData.append("file", encryptedFile);
