@@ -123,7 +123,7 @@ export default function EncrypterInterface() {
           </p>
         </div>
 
-        <Card className="h-[525px] w-[900px] flex mx-auto bg-gray-800 border-gray-700 shadow-2xl">
+        <Card className="md:h-[525px] md:w-[900px] flex mx-auto bg-gray-800 border-gray-700 shadow-2xl">
           <CardHeader className="">
             <Tabs
               value={activeTab}
@@ -265,14 +265,14 @@ export default function EncrypterInterface() {
                   <TabsList className="grid w-full grid-cols-2 bg-gray-700">
                     <TabsTrigger
                       value="archive"
-                      className="flex transition-all items-center gap-2 data-[state=active]:bg-green-700 text-gray-300 cursor-pointer hover:bg-gray-800"
+                      className="text-xs md:text-sm flex transition-all items-center gap-2 data-[state=active]:bg-green-700 text-gray-300 cursor-pointer hover:bg-gray-800"
                     >
                       <FileArchive className="h-4 w-4" />
                       Archivo comprimido
                     </TabsTrigger>
                     <TabsTrigger
                       value="individual"
-                      className="flex items-center gap-2 data-[state=active]:bg-green-700 text-gray-300 cursor-pointer hover:bg-gray-800"
+                      className="text-xs md:text-sm flex items-center gap-2 data-[state=active]:bg-green-700 text-gray-300 cursor-pointer hover:bg-gray-800"
                     >
                       <Files className="h-4 w-4" />
                       Archivos individuales
