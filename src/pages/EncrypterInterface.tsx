@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Shield, Unlock, FileArchive, Files, AlertCircle, CheckCircle, Loader2 } from "lucide-react";
+import { Shield, Unlock, FileArchive, Files, AlertCircle, CheckCircle, Loader2, Key, KeyRound, LockOpen, EarthLock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -111,11 +111,11 @@ export default function EncrypterInterface() {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4 flex items-center justify-center">
+    <div className="h-screen  p-4 flex items-center justify-center">
       <div className="w-full max-w-6xl">
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-white mb-2 flex items-center justify-center gap-2">
-            <Shield className="h-8 w-8 text-green-400" />
+            <EarthLock className="h-8 w-8 text-green-400" />
             Encrypter Mylo
           </h1>
           <p className="text-gray-300">
@@ -139,21 +139,21 @@ export default function EncrypterInterface() {
                   value="encrypt"
                   className="flex items-center gap-2 transition-all data-[state=active]:bg-emerald-500 data-[state=active]:hover:bg-emerald-600 data-[state=active]:text-white text-gray-300 cursor-pointer hover:bg-gray-800"
                 >
-                  <Shield className="h-4 w-4" />
+                  <KeyRound className="h-4 w-4" />
                   Encriptar
                 </TabsTrigger>
                 <TabsTrigger
                   value="decrypt"
                   className="flex items-center gap-2 transition-all data-[state=active]:bg-green-700 data-[state=active]:hover:bg-green-600 data-[state=active]:text-white text-gray-300 cursor-pointer hover:bg-gray-800"
                 >
-                  <Unlock className="h-4 w-4" />
+                  <LockOpen className="h-4 w-4" />
                   Desencriptar
                 </TabsTrigger>
               </TabsList>
 
               <TabsContent value="encrypt" className="mt-4 text-center">
                 <CardTitle className="flex justify-center items-center gap-2 mb-2 text-white ">
-                  <Shield className="h-5 w-5 text-emerald-500" />
+                  <KeyRound className="h-5 w-5 text-emerald-500" />
                   Encriptar Archivo
                 </CardTitle>
                 <CardDescription className="text-gray-400">
@@ -163,7 +163,7 @@ export default function EncrypterInterface() {
 
               <TabsContent value="decrypt" className="mt-4 text-center">
                 <CardTitle className="flex justify-center items-center gap-2 mb-2 text-white">
-                  <Unlock className="h-5 w-5 text-green-700" />
+                  <LockOpen className="h-5 w-5 text-green-700" />
                   Desencriptar Archivo
                 </CardTitle>
                 <CardDescription className="text-gray-400">
@@ -246,7 +246,7 @@ export default function EncrypterInterface() {
                     </>
                   ) : (
                     <>
-                      <Shield className="mr-2 h-4 w-4" />
+                      <KeyRound className="mr-2 h-4 w-4" />
                       Encriptar Archivo
                     </>
                   )}
@@ -312,7 +312,7 @@ export default function EncrypterInterface() {
                           </>
                         ) : (
                           <>
-                            <Unlock className="mr-2 h-4 w-4" />
+                            <LockOpen className="mr-2 h-4 w-4" />
                             Desencriptar desde archivo
                           </>
                         )}
@@ -424,7 +424,7 @@ export default function EncrypterInterface() {
         </Card>
 
         <div className="mt-4 text-center">
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-white">
             Realizado por Camilo Mora como proyecto final para Seguridad Informática.
           </p>
         </div>
